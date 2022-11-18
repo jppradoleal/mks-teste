@@ -1,27 +1,26 @@
-import { ConflictException, Injectable, InternalServerErrorException, NotFoundException, UnauthorizedException, UnprocessableEntityException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+  UnprocessableEntityException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { UserDto } from './dto/user.dto';
 import { Repository, FindOneOptions, FindOptionsWhere } from 'typeorm';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
-
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private usersRepository: Repository<User>, 
+    private usersRepository: Repository<User>,
   ) {}
 
-  async create(createUserDto: CreateUserDto) {
-    const { email, password, passwordConfirmation } = createUserDto;
+  async create(createUserDto: UserDto) {
+    const { email, password } = createUserDto;
 
-    if (password !== passwordConfirmation) {
-      throw new UnprocessableEntityException("Senhas não conferem")
-    }
-
-    const user = this.usersRepository.create({ email: email })
+    const user = this.usersRepository.create({ email: email });
     const salt = await bcrypt.genSalt();
     user.password = await bcrypt.hash(password, salt);
 
@@ -38,7 +37,7 @@ export class UserService {
 
   async validate(email: string, password: string) {
     const user = await this.usersRepository.findOneBy({
-      email: email
+      email: email,
     } as FindOptionsWhere<User>);
 
     if (await bcrypt.compare(password, user.password)) {
@@ -47,37 +46,39 @@ export class UserService {
   }
 
   async findAll() {
-    const users = await this.usersRepository.find()
+    const users = await this.usersRepository.find();
 
-    return users.map(user => user.email);
+    return users.map((user) => user.email);
   }
 
   async findOne(email: string) {
     return await this.usersRepository.findOne(<FindOneOptions>{
       where: {
-        email
-      }
+        email,
+      },
     });
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto) {
-    if (updateUserDto.password) {
+  async update(id: number, updateUserDto: UserDto) {
+    const { password } = updateUserDto;
+
+    if (password) {
       const salt = await bcrypt.genSalt();
       updateUserDto.password = await bcrypt.hash(updateUserDto.password, salt);
     }
 
     return await this.usersRepository.save({
       id: id,
-      ...updateUserDto
-    })
+      password,
+    });
   }
 
   async remove(id: number) {
     const user = await this.usersRepository.findOne(<FindOneOptions>{
       where: {
-        id: id
-      }
-    })
+        id: id,
+      },
+    });
     return await user.remove();
   }
 }
