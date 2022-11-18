@@ -1,0 +1,42 @@
+name: CHECKS
+
+on:
+  push
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.18.1
+      
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          restore-keys: |
+            ${{ runner.os }}-yarn
+      
+      - uses: actions/cache@v1
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('./yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-node-modules
+      
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+      
+      - name: Check linting
+        run: yarn lint
+      
+      - name: Check style
+        run: yarn format -c
+      
+      - name: Run tests
+        run: yarn test
