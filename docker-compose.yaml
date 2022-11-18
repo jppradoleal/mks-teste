@@ -19,3 +19,6 @@ services:
       - POSTGRES_USER=mks
       - POSTGRES_PASSWORD=mks
       - POSTGRES_DB=mks
+
+  redis:
+    image: redis:7.0.5
