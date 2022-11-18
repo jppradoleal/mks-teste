@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, Equals } from 'class-validator';
+import { IsEmail, IsNotEmpty } from 'class-validator';
 import { Match } from 'src/decorators/match.decorator';
 
 export class UserDto {
