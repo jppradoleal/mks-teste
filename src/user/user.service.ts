@@ -4,10 +4,11 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserDto } from './dto/user.dto';
 import { Repository, FindOneOptions, FindOptionsWhere } from 'typeorm';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -16,7 +17,7 @@ export class UserService {
     private usersRepository: Repository<User>,
   ) {}
 
-  async create(createUserDto: UserDto) {
+  async create(createUserDto: CreateUserDto) {
     const { email, password } = createUserDto;
 
     const user = this.usersRepository.create({ email: email });
@@ -58,7 +59,7 @@ export class UserService {
     });
   }
 
-  async update(id: number, updateUserDto: UserDto) {
+  async update(id: number, updateUserDto: UpdateUserDto) {
     const { password } = updateUserDto;
 
     if (password) {
