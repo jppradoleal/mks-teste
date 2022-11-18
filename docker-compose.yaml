@@ -18,3 +18,4 @@ services:
     environment:
       - POSTGRES_USER=mks
       - POSTGRES_PASSWORD=mks
+      - POSTGRES_DB=mks

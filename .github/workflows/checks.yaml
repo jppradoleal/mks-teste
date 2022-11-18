@@ -37,6 +37,3 @@ jobs:
       
       - name: Check style
         run: yarn format -c
-      
-      - name: Run tests
-        run: yarn test
