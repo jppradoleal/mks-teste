@@ -1,8 +1,7 @@
 import { IsEmail, IsNotEmpty } from 'class-validator';
-import { Match } from 'src/decorators/match.decorator';
 import { ApiProperty } from '@nestjs/swagger';
 
-export class UserDto {
+export class LoginDto {
   @ApiProperty()
   @IsEmail()
   email: string;
@@ -10,9 +9,4 @@ export class UserDto {
   @ApiProperty()
   @IsNotEmpty()
   password: string;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  @Match('password')
-  passwordConfirmation: string;
 }
