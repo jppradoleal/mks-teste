@@ -24,7 +24,7 @@ export class Movie {
 
   @OneToMany(() => MovieCast, (movieCast) => movieCast.movie, {
     cascade: false,
-    onDelete: 'RESTRICT'
+    onDelete: 'RESTRICT',
   })
   casts: MovieCast[];
 

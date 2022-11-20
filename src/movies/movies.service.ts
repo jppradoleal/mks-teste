@@ -2,12 +2,11 @@ import {
   ConflictException,
   Injectable,
   InternalServerErrorException,
-  Logger,
 } from '@nestjs/common';
 import { CreateMovieDto, UpdateMovieDto } from './dto';
 import { Movie, MovieCast } from './entities';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ObjectID, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { PersonService } from 'src/person/person.service';
 import { User } from 'src/user/entities/user.entity';
 
@@ -22,7 +21,7 @@ export class MoviesService {
 
   async create(user: User, createMovieDto: CreateMovieDto) {
     let movie;
-    
+
     try {
       movie = await this.moviesRepository.save({
         ...createMovieDto,
