@@ -5,6 +5,7 @@ import { cacheConfig } from '../configs/cache.config';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './user/users.module';
 import { AuthModule } from './auth/auth.module';
+import { PersonModule } from './person/person.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { AuthModule } from './auth/auth.module';
     CacheModule.register(cacheConfig),
     UsersModule,
     AuthModule,
+    PersonModule,
   ],
   controllers: [],
   providers: [],
