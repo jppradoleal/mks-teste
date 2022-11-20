@@ -4,15 +4,14 @@ import { MovieCast } from '../../movies/entities';
 @Entity()
 export class Person {
   @PrimaryGeneratedColumn()
-  id: Number;
+  id: number;
 
   @Column({ nullable: false, type: 'varchar', length: 255 })
   name: string;
 
-  @OneToMany(
-    () => MovieCast,
-    (movieCast) => movieCast.person,
-    { cascade: false, onDelete: 'RESTRICT' }
-  )
+  @OneToMany(() => MovieCast, (movieCast) => movieCast.person, {
+    cascade: false,
+    onDelete: 'RESTRICT',
+  })
   jobs: MovieCast[];
 }
