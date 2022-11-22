@@ -1,73 +1,60 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+<img src="https://www.mkssistemas.com.br/wp-content/uploads/2019/06/logo-mks-sistemas.png" alt="MKS Logo"></img>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# MKS Fullstack Node JS Developer assessment test
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+![](https://img.shields.io/github/checks-status/jpradoleal/mks-teste/main) ![](https://img.shields.io/github/workflow/status/jpradoleal/mks-teste/deploy-production) ![](https://img.shields.io/snyk/vulnerabilities/github/jppradoleal/mks-teste) ![](https://img.shields.io/github/languages/code-size/jppradoleal/mks-teste) ![](https://img.shields.io/github/license/jppradoleal/mks-teste) ![](https://img.shields.io/website?down_color=red&down_message=down&up_color=green&up_message=up&url=https%3A%2F%2Fmks-teste.fly.dev%2Fswagger)
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+1. Do a JWT auth system.
+2. Create a movies catalog CRUD, it should be available only to authenticated users.
 
-## Installation
+## Techs
 
-```bash
-$ npm install
-```
+- [x] Typescript.
+- [x] Nest.js.
+- [x] TypeORM.
+- [x] Swagger.
+- [x] Docker.
+- [ ] Redis (Configured, but wasn't used).
+- [x] PostgreSQL.
 
 ## Running the app
 
-```bash
-# development
-$ npm run start
+1. Create a `.env` file, `cp .env.example .env`. The example .env is pre-configured to docker.
+2. Run `docker-compose up` and you're ready to go.
 
-# watch mode
-$ npm run start:dev
+## Deploying
 
-# production mode
-$ npm run start:prod
-```
+This project has a pipeline configured to deploy the API to fly.io when a new release is published.
+To undo a deploy, execute the previous workflow.
 
-## Test
+## Codestyle enforcement and linting
 
-```bash
-# unit tests
-$ npm run test
+This project has Husky configured, it will run Prettier and ESlint before each commit. There's also a workflow that executes with every push to any branch, it will check for codestyle and any linting errors.
 
-# e2e tests
-$ npm run test:e2e
+## Technical aspects
 
-# test coverage
-$ npm run test:cov
-```
+The architecture is composed by an application providing an RESTful API in JSON, all data received by the API is validated with `class-validator`.
 
-## Support
+## Back-end
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+> Feel free to mention your experience with each tech used.
 
-## Stay in touch
+* Docker: 2-3 years.
+* Redis: 2-3 years.
+* Swagger: 2-3 years.
+* Github Actions: 2 years.
+* PostgreSQL: 2-3 years.
+* Typescript: 1 year.
+* NestJS: First time using.
+* TypeORM: First time using.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Contact me
+
+- Author - [João Prado](https://www.linkedin.com/in/jppradoleal/)
+- Website - [https://jprado.dev/](https://jprado.dev/)
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+[MIT licensed](LICENSE).
