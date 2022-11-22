@@ -8,6 +8,8 @@ services:
       - "3000:3000"
     command:
       - dev
+    env_file:
+      - ./.env
 
   postgres:
     image: postgres:15.1
