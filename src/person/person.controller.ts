@@ -29,6 +29,7 @@ export class PersonController {
   constructor(private readonly personService: PersonService) {}
 
   @Post()
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Creates a new person' })
   @ApiCreatedResponse({ type: CreatePersonDto })
   @ApiBadRequestResponse()
@@ -37,7 +38,6 @@ export class PersonController {
   }
 
   @Get()
-  @ApiBearerAuth()
   @ApiOperation({ summary: 'List all persons' })
   @ApiAcceptedResponse({ type: CreatePersonDto })
   findAll() {
@@ -45,7 +45,6 @@ export class PersonController {
   }
 
   @Get(':id')
-  @ApiBearerAuth()
   @ApiOperation({ summary: 'Get person by id' })
   @ApiForbiddenResponse()
   @ApiCreatedResponse({ type: CreatePersonDto })
