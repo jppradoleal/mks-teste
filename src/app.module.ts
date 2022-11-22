@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { MoviesModule } from './movies/movies.module';
 import { PersonModule } from './person/person.module';
 import { RedisClientOptions } from 'redis';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -33,7 +34,7 @@ import { RedisClientOptions } from 'redis';
     MoviesModule,
     PersonModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}
