@@ -1,4 +1,5 @@
 name: CHECKS
+description: Checks format and linting.
 
 runs:
   using: composite
@@ -24,9 +25,12 @@ runs:
     
     - name: Install dependencies
       run: yarn --frozen-lockfile
+      shell: bash
     
     - name: Check linting
       run: yarn lint
+      shell: bash
     
     - name: Check style
       run: yarn format -c
+      shell: bash

@@ -12,6 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install Node.js
-        uses: ./.github/actions/checks.action
+      - name: Checks
+        uses: ./.github/actions/checks
       
