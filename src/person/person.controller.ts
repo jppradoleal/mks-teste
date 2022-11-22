@@ -20,7 +20,7 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @UseGuards(JwtAuthGuard)
 @ApiTags('Person')

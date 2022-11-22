@@ -7,8 +7,8 @@ import { CreateMovieDto, UpdateMovieDto } from './dto';
 import { Movie, MovieCast } from './entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { PersonService } from 'src/person/person.service';
-import { User } from 'src/user/entities/user.entity';
+import { PersonService } from '../person/person.service';
+import { User } from '../user/entities/user.entity';
 
 @Injectable()
 export class MoviesService {

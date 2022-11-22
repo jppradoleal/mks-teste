@@ -1,5 +1,5 @@
 import { IsNotEmpty } from 'class-validator';
-import { Match } from 'src/decorators/match.decorator';
+import { Match } from '../../decorators/match.decorator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateUserDto {
