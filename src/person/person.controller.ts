@@ -38,13 +38,15 @@ export class PersonController {
   }
 
   @Get()
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'List all persons' })
-  @ApiAcceptedResponse({ type: CreatePersonDto })
+  @ApiAcceptedResponse({ type: CreatePersonDto, isArray: true })
   findAll() {
     return this.personService.findAll();
   }
 
   @Get(':id')
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Get person by id' })
   @ApiForbiddenResponse()
   @ApiCreatedResponse({ type: CreatePersonDto })

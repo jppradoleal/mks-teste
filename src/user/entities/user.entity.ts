@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import {
   BaseEntity,
   Entity,
@@ -17,6 +18,7 @@ export class User extends BaseEntity {
   @Column({ nullable: false, type: 'varchar', length: 255 })
   email: string;
 
+  @Exclude()
   @Column({ nullable: false })
   password: string;
 

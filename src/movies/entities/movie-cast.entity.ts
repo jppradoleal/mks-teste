@@ -7,6 +7,7 @@ import {
 } from 'typeorm';
 import { Movie } from './movie.entity';
 import { Person } from '../../person/entities/person.entity';
+import { Exclude } from 'class-transformer';
 
 export enum JobType {
   ACTOR = 'Actor',
@@ -20,6 +21,7 @@ export class MovieCast {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Exclude()
   @ManyToOne(() => Movie, (movie) => movie.casts, {
     cascade: true,
     onDelete: 'CASCADE',

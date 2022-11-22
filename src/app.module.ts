@@ -20,6 +20,7 @@ import { resolve } from 'path';
         type: 'postgres',
         url: config.get('DATABASE_URL'),
         entities: [resolve(__dirname, '../**/*.entity.{js,ts}')],
+        synchronize: process.env.NODE_ENV === 'development',
       }),
     }),
     CacheModule.registerAsync({

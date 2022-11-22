@@ -7,6 +7,8 @@ import {
   Request,
   Put,
   Get,
+  UseInterceptors,
+  ClassSerializerInterceptor,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -24,6 +26,7 @@ import { GetUserDto } from './dto/get-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @ApiTags('Authentication')
+@UseInterceptors(ClassSerializerInterceptor)
 @Controller('users')
 export class UsersController {
   constructor(private readonly userService: UsersService) {}

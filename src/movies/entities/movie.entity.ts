@@ -13,7 +13,10 @@ export class Movie {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => User, { cascade: false })
+  @ManyToOne(() => User, {
+    nullable: false,
+    persistence: false,
+  })
   creator: User;
 
   @Column({ nullable: false, type: 'varchar', length: 255 })

@@ -8,6 +8,8 @@ import {
   Delete,
   Request,
   UseGuards,
+  UseInterceptors,
+  ClassSerializerInterceptor,
 } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
@@ -23,6 +25,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 
+@UseInterceptors(ClassSerializerInterceptor)
 @UseGuards(JwtAuthGuard)
 @ApiTags('Movies')
 @Controller('movies')
@@ -34,18 +37,23 @@ export class MoviesController {
   @ApiOperation({ summary: 'Creates a new movie' })
   @ApiCreatedResponse({ type: CreateMovieDto })
   @ApiBadRequestResponse()
-  create(@Request() req, @Body() createMovieDto: CreateMovieDto) {
-    return this.moviesService.create(req.user, createMovieDto);
+  create(
+    @Request() req,
+    @Body() createMovieDto: CreateMovieDto,
+  ): Promise<CreateMovieDto> {
+    return this.moviesService.create(req.user.userId, createMovieDto);
   }
 
   @Get()
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'List all movies' })
-  @ApiAcceptedResponse({ type: CreateMovieDto })
+  @ApiAcceptedResponse({ type: CreateMovieDto, isArray: true })
   findAll() {
     return this.moviesService.findAll();
   }
 
   @Get(':id')
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Get movie by id' })
   @ApiForbiddenResponse()
   @ApiCreatedResponse({ type: CreateMovieDto })

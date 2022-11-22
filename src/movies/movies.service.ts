@@ -8,7 +8,6 @@ import { Movie, MovieCast } from './entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PersonService } from '../person/person.service';
-import { User } from '../user/entities/user.entity';
 
 @Injectable()
 export class MoviesService {
@@ -19,13 +18,13 @@ export class MoviesService {
     private personsService: PersonService,
   ) {}
 
-  async create(user: User, createMovieDto: CreateMovieDto) {
+  async create(userId: number, createMovieDto: CreateMovieDto) {
     let movie;
 
     try {
       movie = await this.moviesRepository.save({
         ...createMovieDto,
-        creator: user,
+        creator: { id: userId },
       });
     } catch (error) {
       if (error.code.toString() === '23505') {
@@ -47,7 +46,10 @@ export class MoviesService {
           return existentCast;
         }
 
-        return this.movieCastsRepository.save({ ...cast, movie: movie });
+        return this.movieCastsRepository.save({
+          ...cast,
+          movie: { id: movie.id },
+        });
       }),
     );
 
