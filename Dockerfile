@@ -1,4 +1,4 @@
-FROM node:16.18.1-bullseye-slim as build
+FROM node:16.18.1-bullseye as build
 RUN apt-get update && \
     apt-get install --no-install-recommends -y
 WORKDIR /usr/src/app

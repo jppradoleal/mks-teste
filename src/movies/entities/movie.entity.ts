@@ -26,8 +26,9 @@ export class Movie {
   release_date: Date;
 
   @OneToMany(() => MovieCast, (movieCast) => movieCast.movie, {
-    cascade: false,
-    onDelete: 'RESTRICT',
+    cascade: true,
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
   })
   casts: MovieCast[];
 

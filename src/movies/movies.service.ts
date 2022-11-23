@@ -1,8 +1,4 @@
-import {
-  ConflictException,
-  Injectable,
-  InternalServerErrorException,
-} from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { CreateMovieDto, UpdateMovieDto } from './dto';
 import { Movie, MovieCast } from './entities';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -19,23 +15,16 @@ export class MoviesService {
   ) {}
 
   async create(userId: number, createMovieDto: CreateMovieDto) {
-    let movie;
+    const casts = createMovieDto.casts;
+    delete createMovieDto.casts;
 
-    try {
-      movie = await this.moviesRepository.save({
-        ...createMovieDto,
-        creator: { id: userId },
-      });
-    } catch (error) {
-      if (error.code.toString() === '23505') {
-        throw new ConflictException('Movie already exists');
-      }
+    const movie = await this.moviesRepository.save({
+      ...createMovieDto,
+      creator: { id: userId },
+    });
 
-      throw new InternalServerErrorException('Error saving movie data');
-    }
-
-    const casts = await Promise.all(
-      createMovieDto.casts.map(async (cast) => {
+    const castObjects = await Promise.all(
+      casts.map(async (cast) => {
         cast.person = await this.personsService.create(cast.person);
 
         const existentCast = await this.movieCastsRepository.findOne({
@@ -53,7 +42,7 @@ export class MoviesService {
       }),
     );
 
-    movie.casts = casts;
+    movie.casts = castObjects;
 
     return movie;
   }
@@ -72,7 +61,12 @@ export class MoviesService {
   }
 
   async update(id: number, updateMovieDto: UpdateMovieDto) {
-    return await this.moviesRepository.update(id, updateMovieDto);
+    const movie = await this.moviesRepository.findOne({
+      where: { id },
+      relations: ['casts'],
+    });
+    Object.assign(movie, updateMovieDto);
+    return await this.moviesRepository.save(movie);
   }
 
   async remove(id: number) {

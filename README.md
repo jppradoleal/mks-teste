@@ -2,7 +2,7 @@
 
 # MKS Fullstack Node JS Developer assessment test
 
-![](https://img.shields.io/github/checks-status/jpradoleal/mks-teste/main) ![](https://img.shields.io/github/workflow/status/jpradoleal/mks-teste/deploy-production) ![](https://img.shields.io/snyk/vulnerabilities/github/jppradoleal/mks-teste) ![](https://img.shields.io/github/languages/code-size/jppradoleal/mks-teste) ![](https://img.shields.io/github/license/jppradoleal/mks-teste) ![](https://img.shields.io/website?down_color=red&down_message=down&up_color=green&up_message=up&url=https%3A%2F%2Fmks-teste.fly.dev%2Fswagger)
+![](https://img.shields.io/github/workflow/status/jppradoleal/mks-teste/CHECKS?label=checks) ![](https://img.shields.io/github/workflow/status/jppradoleal/mks-teste/Deploy%20production) ![](https://img.shields.io/snyk/vulnerabilities/github/jppradoleal/mks-teste) ![](https://img.shields.io/github/languages/code-size/jppradoleal/mks-teste) ![](https://img.shields.io/github/license/jppradoleal/mks-teste) ![](https://img.shields.io/website?down_color=red&down_message=down&up_color=green&up_message=up&url=https%3A%2F%2Fmks-teste.fly.dev%2Fswagger)
 
 ## Description
 

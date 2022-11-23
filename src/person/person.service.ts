@@ -34,7 +34,9 @@ export class PersonService {
   }
 
   async update(id: number, updatePersonDto: UpdatePersonDto) {
-    return await this.personsRepository.update(id, updatePersonDto);
+    const person = await this.personsRepository.findOneBy({ id });
+    Object.assign(person, updatePersonDto);
+    return await this.personsRepository.save(person);
   }
 
   async remove(id: number) {
